@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For Nanu 💖</title>
+
+<style>
+body {
+  background: linear-gradient(to bottom, #ffd6e7, #fff0f5);
+  overflow: hidden;
+  text-align: center;
+  font-family: cursive;
+}
+
+h1 {
+  margin-top: 15%;
+  font-size: 42px;
+  color: #ff4d88;
+  font-style: italic;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+#yesBtn, #yesKiss {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+#noBtn, #noKiss {
+  background-color: #888;
+  color: white;
+  position: absolute;
+}
+
+/* floating hearts */
+.heart {
+  position: absolute;
+  font-size: 28px;
+  animation: float 8s linear infinite;
+}
+
+@keyframes float {
+  0% {transform: translateY(100vh);}
+  100% {transform: translateY(-10vh);}
+}
+
+/* monkey on side */
+#monkey {
+  position: fixed;
+  right: 40px;
+  bottom: 60px;
+  width: 160px;
+  display: none;
+  border-radius: 20px;
+  box-shadow: 0 02 0px pink;
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  font-style: italic;
+  color: #ff4d88;
+}
+</style>
+</head>
+
+<body>
+
+
+<h1 id="mainText"></h1>
+<div id="buttons"></div>
+
+<img id="monkey" src="monkey.png">
+
+<footer>love, sea.</footer>
+
+<script>
+
+/* CLICK ANYWHERE TO START MUSIC */
+
+ 
+let text1 = ["i have something to tell u"];
+let text2 = ["i..","h..","a..","t......","IM IN LOVE WITH UUUUUUU 💖"];
+
+let index = 0;
+
+function showOpening() {
+  document.getElementById("mainText").innerHTML = text1[0];
+  setTimeout(showDrama, 2000);
+}
+
+function showDrama() {
+  if (index < text2.length) {
+    document.getElementById("mainText").innerHTML = text2[index];
+    index++;
+    setTimeout(showDrama, 1100);
+  } else {
+    setTimeout(showValentine, 1500);
+  }
+}
+
+function showValentine() {
+  document.getElementById("mainText").innerHTML =
+    "Will u be my Valentine nanu? 💌";
+
+  document.getElementById("buttons").innerHTML =
+    '<button id="yesBtn" onclick="yesValentine()">Yes 💖</button>' +
+    '<button id="noBtn" onmouseover="moveNo(this)">No 😢</button>';
+
+  document.getElementById("monkey").style.display = "block";
+}
+
+let yesSize = 18;
+
+function moveNo(btn) {
+  btn.style.left = Math.random()*80 + "vw";
+  btn.style.top = Math.random()*80 + "vh";
+  yesSize += 5;
+  document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+}
+
+function yesValentine() {
+  document.getElementById("mainText").innerHTML = "YAYAYAYAYY 💕";
+  document.getElementById("buttons").innerHTML = "";
+
+  document.getElementById("monkey").style.display="none";
+
+  setTimeout(showKiss, 2000);
+}
+
+function showKiss() {
+  document.getElementById("mainText").innerHTML =
+    "want a kissie? 🥺";
+
+  document.getElementById("buttons").innerHTML =
+    '<button id="yesKiss" onclick="yesKiss()">Yes 😘</button>' +
+    '<button id="noKiss" onmouseover="moveNo(this)">No 🙈</button>';
+}
+
+function yesKiss() {
+  document.getElementById("mainText").innerHTML =
+    "MWAAAAAHHHHHHHH 💋";
+  document.getElementById("buttons").innerHTML = "";
+  setTimeout(finalLove, 2000);
+}
+
+function finalLove() {
+  document.getElementById("mainText").innerHTML =
+    "love you forever monkeyyyy 💖";
+}
+
+/* floating hearts */
+for (let i=0; i<25; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(heart);
+}
+
+showOpening();
+</script>
+
+</body>
+</html>
